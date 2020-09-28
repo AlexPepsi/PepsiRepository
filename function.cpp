@@ -63,3 +63,24 @@ void DeleteEmploy(group*& person, int& size)
     person = tmp;
 
 }
+
+void ExportInfo(group*& person, int& size)
+{
+    FILE* f = fopen("data.txt", "w");
+    for (int i = 0; i < size; i++)
+    {
+        fprintf(f, "%s,%s,%d\n", person[i].name, person[i].last_name, person[i].age);
+    }
+    fclose(f);
+}
+
+void ImportInfo(group*& person, int& size)
+{
+    FILE* f = fopen("data.txt", "r");
+    int i = 0;
+    while (fscanf(f, "%[^,],%[^,],%d\n", person[i].name, person[i].last_name, &person[i].age) != EOF)
+    {
+        i++;
+    }
+    fclose(f);
+}
