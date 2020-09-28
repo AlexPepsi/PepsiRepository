@@ -1,31 +1,62 @@
 #include "head.h"
 
-using nampespace std;
 
 int main()
 {
-	int a, b, func;
+    int InitialNumberOfPersons = 4;
+    group* Person = new group[InitialNumberOfPersons];
 
-	cout << "Hello World" << endl;
+    ImportInfo(Person, InitialNumberOfPersons);
+    int choose;
+    do
+    {
+        cout << "1. Add new employ" << endl;
+        cout << "2. Change employ info" << endl;
+        cout << "3. Delete employ" << endl;
+        cout << "4. Display all persons" << endl;
 
-	cout << "Input first number : ";
-	cin >> a;
-	cout << endl << "Input second number : ";
-	cin >> b;
+        cout << "5. Download all data to file" << endl;
+        cout << "6. Download all data from file" << endl;
+        cout << "7. Exit" << endl;
 
-	cout << endl << "Choose function : ";
-	cin >> func;
+        cout << "Your choose :";
+        cin >> choose;
+        switch (choose)
+        {
+        case 1:
+            NewEmploy(Person, InitialNumberOfPersons);
+            break;
+        case 2:
+            ChangeEmploy(Person, InitialNumberOfPersons);
+            break;
+        case 3:
+            DeleteEmploy(Person, InitialNumberOfPersons);
+            break;
+        case 4:
+            system("cls");
+            for (int i = 0; i < InitialNumberOfPersons; i++)
+            {
+                cout << "Name : " << Person[i].name << endl;
+                cout << "Lastname : " << Person[i].last_name << endl;
+                cout << "Age : " << Person[i].age << endl;
+                cout << "------------------------- " << endl;
+            }
+            break;
+        case 5:
+            system("cls");
+            ExportInfo(Person, InitialNumberOfPersons);
+            break;
+        case 6:
+            system("cls");
+            ImportInfo(Person, InitialNumberOfPersons);
+        case 7:
+            system("cls");
+            break;     
+        }
 
-	switch (func)
-	{
-	case 1:
-		
-		plus(a, b);
-		break;
-	case 2:
+    } while (choose != 10);
 
-		minus(a, b);
-		break;
-	}
-	system("pause");
+    ExportInfo(Person, InitialNumberOfPersons);
+
+    system("pause");
 }
