@@ -64,6 +64,44 @@ void DeleteEmploy(group*& person, int& size)
 
 }
 
+void ChangeEmploy(group*& person, int& size)
+{
+    group* tmp = new group[size];
+
+    int change_unit;
+    int change_info;
+    cout << "Who do you want to change : ";
+    cin >> change_unit;
+    cout << "What do you want to change - name, lastname or age : ";
+    cin >> change_info;
+
+    for (int i = 0; i < size; i++)
+    {
+        strcpy(tmp[i].name, person[i].name);
+        strcpy(tmp[i].last_name, person[i].last_name);
+        tmp[i].age = person[i].age;
+    }
+
+    if (change_info == 1)
+    {
+        cout << "Input your new info :";
+        cin >> tmp[change_unit].name;
+    }
+    if (change_info == 2)
+    {
+        cout << "Input your new info :";
+        cin >> tmp[change_unit].last_name;
+    }
+    if (change_info == 3)
+    {
+        cout << "Input your new info :";
+        cin >> tmp[change_unit].age;
+    }
+
+    delete[] person;
+    person = tmp;
+}
+
 void ExportInfo(group*& person, int& size)
 {
     FILE* f = fopen("data.txt", "w");
